@@ -1,0 +1,128 @@
+body{
+    background-color:#dbdbd4;
+}
+
+.top-container{
+    background-color: #019587
+    ;
+    height: 200px;
+    position: relative;
+}
+
+.id-container{
+    position: relative;
+    height: 100vh;
+}
+
+.shell{
+    display: flex;
+    width: 1400px;
+    height: 1000px;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.side-container{
+    flex-shrink: 0;
+    width: 550px;
+}
+
+.sideright-container{
+    flex-grow: 1;
+}
+
+.main-user-container{
+    justify-content: space-between;
+    background-color: #eaeaea;
+    width: 100%;
+    height: 100px;
+    
+}
+
+.main-user-avatar{
+    width: 70px;
+    background: #f1f2f2;
+    border-radius: 50%;
+}
+
+.icon-main-user{
+    font-size: 2rem;
+    color: #b1b1b1;
+}
+
+.notice-container{
+    background-color: #8edafc;
+    height: 120px;
+    width: 100%;
+}
+
+.belt-notification{
+    background-color:#f2fbff;
+    font-size:1.6rem;
+    border-radius: 50%;
+    padding: 15px;
+    color: #8edafc;
+}
+
+.search-container{
+    background-color: #f4eee9;
+
+}
+
+.subtitle{
+    color: gray;
+    text-decoration: underline;
+}
+
+.input-group{
+    height: 50px;
+}
+
+.search-icon{
+    background-color: white;
+}
+
+.form-control, .search-icon{
+    border:none;
+}
+
+.text-chat, .date-chat{
+    color: rgb(170, 166, 166);
+}
+
+.date-chat{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.list-user-container{
+    overflow: auto;
+    background-color: white;
+}
+
+.container-chat{
+    background-image: url("img/mine.jpg");
+    background-size: cover;
+}
+
+.send-text-container{
+    background-color: #f4eee9;
+    height: 100px;
+    width: 100%;
+}
+
+.icon{
+    font-size: 2rem;
+    color:#6c7375;
+}
+
+.text-sent{
+    background-color: #d5f9b9;
+}
+
+.text-receveid{
+    background-color: #feffff;
+}
