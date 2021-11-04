@@ -88,6 +88,7 @@ new Vue ({
                 ],
             },
         ],
+        activeChat: 0,
     },
     methods: {
         getLastMessage(messages) {
@@ -99,6 +100,10 @@ new Vue ({
         },
         getLastDate(messages) {
             return messages[messages.length -1].date;
-        }
+        },
+        getActiveChat() {
+    
+            this.activeChat ++;
+        },
     }   
 });

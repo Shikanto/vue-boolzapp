@@ -50,8 +50,8 @@
                 </div>
                 <!-- Lista utenti -->
                 <div class="list-user-container flex-grow-1">
-                    <div class="d-flex align-items-center p-3 position-relative border-top" v-for="contact in contacts">
-                        <img  class="main-user-avatar" :src="`img/avatar${contact.avatar}.jpg`" alt="">
+                    <div @click="getActiveChat" class="d-flex align-items-center p-3 position-relative border-top" v-for="contact in contacts">
+                        <img class="main-user-avatar" :src="`img/avatar${contact.avatar}.jpg`" alt="">
                         <div class="container-text-chat w-50">
                             <h2 class="fw-bolder fs-5 m-0 ms-3">{{contact.name}} </h2>
                             <span class="text-chat fs-5 ms-3">{{getLastMessage(contact.messages)}}</span>
@@ -72,7 +72,7 @@
                         <img  class="main-user-avatar" src="img/avatar_1.jpg" alt="">
                         <div>
                             <h2 class="fw-bolder fs-5 m-0 ms-4">Nome Utente </h2>
-                            <span class="text-chat fs-5 ms-4">Fatto tutto</span>
+                            <span class="text-chat fs-5 ms-4">Ultimo accesso oggi alle </span>
                         </div>
                     </div>
                     <!-- icone chat utente -->
