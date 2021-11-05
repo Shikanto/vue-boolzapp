@@ -88,7 +88,9 @@ new Vue ({
                 ],
             },
         ],
-        activeChat: 0,
+        activeChat:{},
+        newMessage:"",
+
     },
     methods: {
         getLastMessage(messages) {
@@ -99,11 +101,39 @@ new Vue ({
             return messages[messages.length - 1].text;
         },
         getLastDate(messages) {
+            
             return messages[messages.length -1].date;
         },
-        getActiveChat() {
+        getActiveChat(utenteAttivo) {
     
-            this.activeChat ++;
+            this.activeChat = utenteAttivo;     
         },
-    }   
+
+        getMessagesUser(messagesUser){
+            this.messagesUser = this.activeChat.messages;
+            return messagesUser
+        },
+        addNewMessage() {
+
+            this.activeChat.messages.push({
+                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                text: this.newMessage,
+                status: 'sent'
+            })
+            setTimeout(() =>{
+                this.activeChat.messages.push({
+                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                    text: "ok",
+                    status: 'received'   
+                });
+            }, 1000)
+                
+            
+        },
+        
+        
+    },
+    mounted() {
+        this.activeChat = this.contacts[0];
+    },   
 });

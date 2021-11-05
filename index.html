@@ -8,6 +8,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
     <title>Boolzap</title>
 </head>
 <body>
@@ -17,13 +19,16 @@
 
             <!-- contenitore parte sinistra -->
            <div class="side-container d-flex flex-column">
+                
                 <!-- contenitore utente principale alto sx-->
                 <div class="main-user-container d-flex flex-shrink-0 border-end border-secondary p-2">
+                    
                     <!-- avatar + nome utente -->
                     <div class="d-flex align-items-center">
                         <img  class="main-user-avatar" src="img/avatar_3.jpg" alt="">
                         <h2 class="fw-bolder fs-5 ms-2">Shikanto</h2>
                     </div>
+                    
                     <!--  3 icone -->
                     <div class="d-flex align-items-center justify-content-end icon-main-user">
                         <i class="px-3 fas fa-circle-notch"></i>
@@ -31,6 +36,7 @@
                         <i class="px-3 fas fa-ellipsis-v"></i>
                     </div>
                 </div>
+                
                 <!-- area attiva/disattiva notifica -->
                 <div class="notice-container d-flex align-items-center p-4">
                     <div class="belt-notification">
@@ -41,6 +47,7 @@
                         <h3 class="subtitle fs-5 ms-2">Attivia notifiche desktop</h3>
                     </div>
                 </div>
+                
                 <!-- area cerca utente o conversazione -->
                 <div class="search-container d-flex flex-shrink-0 align-items-center p-3">
                     <div class="input-group">
@@ -48,9 +55,10 @@
                         <input type="text" class="form-control" placeholder="Cerca o nizia una nuova chat" aria-label="Username" aria-describedby="basic-addon1">
                     </div>
                 </div>
+                
                 <!-- Lista utenti -->
                 <div class="list-user-container flex-grow-1">
-                    <div @click="getActiveChat" class="d-flex align-items-center p-3 position-relative border-top" v-for="contact in contacts">
+                    <div @click="getActiveChat(contact)" class="d-flex align-items-center p-3 position-relative border-top" v-for="contact in contacts">
                         <img class="main-user-avatar" :src="`img/avatar${contact.avatar}.jpg`" alt="">
                         <div class="container-text-chat w-50">
                             <h2 class="fw-bolder fs-5 m-0 ms-3">{{contact.name}} </h2>
@@ -66,15 +74,17 @@
 
             <!-- contenitore parte destra -->
             <div class="sideright-container d-flex flex-column">
+                
                 <!-- nav chat utente -->
                 <div class="main-user-container d-flex flex-shrink-0 p-2 ps-3">
-                    <div class="d-flex align-items-center">
-                        <img  class="main-user-avatar" src="img/avatar_1.jpg" alt="">
+                    <div class="d-flex align-items-center" v-model="activeChat">
+                        <img  class="main-user-avatar" :src="`img/avatar${activeChat.avatar}.jpg`" alt="">
                         <div>
-                            <h2 class="fw-bolder fs-5 m-0 ms-4">Nome Utente </h2>
-                            <span class="text-chat fs-5 ms-4">Ultimo accesso oggi alle </span>
+                            <h2 class="fw-bolder fs-5 m-0 ms-4">{{activeChat.name}} </h2>
+                            <span class="text-chat fs-5 ms-4">Ultimo accesso oggi alle {{getLastDate(activeChat.messages)}} </span>
                         </div>
                     </div>
+                    
                     <!-- icone chat utente -->
                     <div class="d-flex align-items-center justify-content-end icon-main-user">
                         <i class="px-3 fs-3 fas fa-search"></i>
@@ -82,20 +92,28 @@
                         <i class="px-3 fas fa-ellipsis-v"></i>
                     </div>
                 </div>
+                
                 <!-- area visualizzazione messaggi -->
-                <div class="container-chat flex-grow-1 py-4 px-5">
-                    <div class="sent">
-                        <div class="text-sent">Hai portato spasso il cane? <br><span class="date-text">10/01/2020 15:50:00</span></div>
+                <div class="container-chat flex-grow-1 py-4 px-5" >
+                    <div v-for="message in activeChat.messages">
+                        <div class="sent" v-if="message.status === 'sent'">
+                            <div class="text-sent text-end">
+                                {{message.text}}<br><span class="date-text">{{message.date}}</span>
+                            </div>
+                        </div>
+                        <div class="text-receveid" v-if="message.status === 'received'">
+                            {{message.text}}<br><span class="date-text">{{message.date}}</span>
+                        </div>
                     </div>
-                    <div class="text-receveid">Tutto fatto!<br><span class="date-text">10/01/2020 15:50:00</span></div>
                 </div>
+                
                 <!-- dove scrivere il messaggio da inviare -->
                 <div class="send-text-container d-flex justify-content-between align-items-center flex-shrink-0">
                     <div class="icon p-4">
                         <i class="far fa-smile"></i> 
                     </div>
                     <div class="input-group">
-                        <input type="text" class="form-control rounded-2" placeholder="Scrivi Messaggio..." aria-label="Scrivi Messaggio" aria-describedby="basic-addon1">
+                        <input v-model="newMessage" v-on:keyup.enter="addNewMessage" type="text" class="form-control rounded-2" placeholder="Scrivi Messaggio..." aria-label="Scrivi Messaggio" aria-describedby="basic-addon1">
                     </div>
                     <div class="icon p-4"><i class="fas fa-microphone"></i>
                     </div>

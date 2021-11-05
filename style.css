@@ -3,13 +3,12 @@ body{
 }
 
 .top-container{
-    background-color: #019587
-    ;
+    background-color: #019587;
     height: 200px;
     position: relative;
 }
 
-.id-container{
+#main-container{
     position: relative;
 }
 
@@ -18,9 +17,9 @@ body{
     width: 1400px;
     height: 900px;
     position: absolute;
-    top: 45%;
+    top: 20%;
     left: 50%;
-    transform: translate(-50%,-50%);
+    transform: translate(-50%);
 }
 
 .side-container{
@@ -111,6 +110,7 @@ body{
 .container-chat{
     background-image: url("img/mine.jpg");
     background-size: cover;
+    overflow: auto;
 }
 
 .send-text-container{
@@ -126,10 +126,11 @@ body{
 
 .text-sent, .text-receveid{
     border-radius: 8px;
-    width: 45%;
-    padding: 20px 30px 30px;
+    max-width: 40%;
+    min-width: 200px;
+    padding: 10px 30px 30px;
     margin-bottom: 20px;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     position: relative;
 
