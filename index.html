@@ -95,10 +95,19 @@
                 
                 <!-- area visualizzazione messaggi -->
                 <div class="container-chat flex-grow-1 py-4 px-5" >
-                    <div v-for="message in activeChat.messages">
+                    <div v-for="(message, index) in activeChat.messages">
                         <div :class="message.status === 'sent' ? 'message-sent' : ''">
-                            <div class="card-message text-end" :class="message.status === 'sent' ? 'text-sent' : 'text-receveid'">
-                                {{message.text}}<br><span class="date-text">{{message.date}}</span>
+                            <div class="card-message" :class="message.status === 'sent' ? 'text-sent' : 'text-receveid'">
+                                {{message.text}} 
+                                <div class="chevron-text">
+                                    <i  @click="toggleDropDown(index)" class="fas fa-chevron-down" ></i>
+                                    <div class="menu-drop" :class="isActive === true && activeIndex === index ?  'menu-active' : '' ">
+                                        <div>Info messaggio</div>
+                                        <div @click="removeMessage(activeIndex)">Cancella messaggio</div>
+                                    </div>
+                                </div> 
+                                <br>
+                                <span class="date-text">{{message.date}}</span>
                             </div>
                         </div>
                     </div>

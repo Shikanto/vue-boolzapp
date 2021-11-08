@@ -156,3 +156,35 @@ body{
     font-size: 0.9rem;
     
 }
+
+.chevron-text{
+    position: absolute;
+    right: 10px;
+    top:15px;
+    font-size: 1.1rem;
+    color:#6c7375;
+}
+
+.menu-drop{
+    display: none;
+    position: absolute;
+    right: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    font-size: 1rem;
+    overflow: auto;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border-radius: 5px;
+    border: 1px solid;
+    padding: 4px;
+}
+
+.menu-drop div:hover{
+    background-color: lightgray;
+}
+
+.menu-active{
+    display: block;
+}
+

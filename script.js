@@ -87,6 +87,8 @@ new Vue ({
         activeChat:{},
         newMessage:"",
         userToFind:"",
+        isActive: false,
+        activeIndex: undefined,
 
     },
     methods: {
@@ -136,6 +138,17 @@ new Vue ({
                 return user.name.toLowerCase()
                 .includes(this.userToFind.toLowerCase().trim());
             })
+        },
+        
+        toggleDropDown(index){
+            this.activeIndex = index;
+            this.isActive = !this.isActive;
+        },
+
+        removeMessage(activeIndex){
+            this.activeChat.messages.splice(activeIndex, 1);
+            this.activeIndex = undefined;
+            this.isActive = false;
         }
 
         
